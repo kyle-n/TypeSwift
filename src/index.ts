@@ -4,7 +4,6 @@ declare global {
   interface Array<T> {
     readonly first: T | undefined;
     readonly last: T | undefined;
-    readonly count: number;
   }
 }
 
