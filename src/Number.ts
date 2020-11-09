@@ -4,6 +4,8 @@ declare global {
   interface Number {
     readonly quotientAndRemainder: (dividingBy: number) => [quotient: number, remainder: number];
     readonly isMultiple: (of: number) => boolean;
+    readonly zero: number;
+    readonly isZero: boolean;
   }
 }
 
@@ -21,3 +23,15 @@ Number.prototype['isMultiple'] = function (of: number) {
   const n: number = this.valueOf();
   return (n % of === 0);
 }
+
+Object.defineProperty(Number, 'zero', {
+  get() {
+    return 0;
+  }
+});
+
+Object.defineProperty(Number.prototype, 'isZero', {
+  get(this: Number) {
+    return this.valueOf() === 0;
+  }
+});
