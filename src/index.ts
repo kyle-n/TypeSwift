@@ -8,7 +8,7 @@ declare global {
 }
 
 Object.defineProperty(Array.prototype, 'first', {
-  get(this: Array<any>): number | undefined {
+  get(this: Array<any>) {
     if (this.length > 0) return this[0];
     else return undefined;
   },

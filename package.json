@@ -2,7 +2,9 @@
   "name": "SwiftlyJS",
   "version": "1.0.0",
   "description": "Swift-like extensions for JavaScript and TypeScript",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "type": "commonjs",
   "scripts": {
     "compile": "tsc && webpack",
     "clean": "rm -rf _bundles lib",
@@ -13,8 +15,12 @@
     "type": "git",
     "url": "git+https://github.com/kyle-n/SwiftlyJS.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "swift",
+    "typescript",
+    "javascript"
+  ],
+  "author": "Kyle Nazario",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/kyle-n/SwiftlyJS/issues"
