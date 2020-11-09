@@ -10,6 +10,11 @@ declare global {
     readonly map: (callback: (char: string, index?: number, parent?: string) => string) => string;
     readonly compactMap: (callback: (char: string, index?: number, parent?: string) => string | undefined) => string;
     readonly forEach: (callback: (char: string, index?: number, parent?: string) => void) => void;
+    readonly sorted: () => string;
+    readonly reversed: () => string;
+    readonly shuffled: () => string;
+    readonly startIndex: number | undefined;
+    readonly endIndex: number | undefined;
   }
 }
 
@@ -72,4 +77,37 @@ String.prototype['forEach'] = function (callback: (char: string, index?: number,
   for (let i = 0; i < this.length; i++) {
     callback(s[i]);
   }
+}
+
+Object.defineProperty(String.prototype, 'startIndex', {
+  get(this: String) {
+    if (this.length > 0) return 0;
+    else return undefined;
+  }
+});
+
+Object.defineProperty(String.prototype, 'endIndex', {
+  get(this: String) {
+    if (this.length > 0) return this.length - 1;
+    else return undefined;
+  }
+});
+
+// @ts-ignore
+String.prototype['sorted'] = function () {
+  return this.split('').sort().join('');
+}
+
+// @ts-ignore
+String.prototype['reversed'] = function () {
+  let reversed = '';
+  for (let i = this.endIndex ?? -1; i >= 0; i--) {
+    reversed += this[i];
+  }
+  return reversed;
+}
+
+// @ts-ignore
+String.prototype['shuffled'] = function () {
+  return this.split('').shuffled().join('')
 }
