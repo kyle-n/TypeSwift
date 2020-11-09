@@ -9,7 +9,9 @@ declare global {
     readonly insert: (element: T, at: number) => void;
     readonly remove: (at: number) => T | undefined;
     readonly compactMap: () => Array<any>;
+    readonly shuffle: () => void;
     readonly shuffled: () => Array<T>;
+    readonly swapAt: (indexA: number, indexB: number) => void;
   }
 }
 
@@ -62,5 +64,19 @@ Array.prototype['compactMap'] = function (callback: (element: any) => any | unde
 
 // @ts-ignore
 Array.prototype['shuffled'] = function () {
-  return this.sort(() => Math.random() - 0.5);
+  const clone = this.slice();
+  clone.shuffle();
+  return clone;
+}
+
+// @ts-ignore
+Array.prototype['shuffle'] = function () {
+  this.sort(() => Math.random() - 0.5);
+}
+
+// @ts-ignore
+Array.prototype['swapAt'] = function (indexA: number, indexB: number) {
+  const temp = this[indexB];
+  this[indexB] = this[indexA];
+  this[indexA] = temp;
 }
