@@ -7,6 +7,8 @@ declare global {
     readonly first: string | undefined;
     readonly last: string | undefined;
     readonly randomElement: () => string | undefined;
+    readonly map: (callback: (char: string) => string) => string;
+    readonly compactMap: (callback: (char: string) => string | undefined) => string;
   }
 }
 
@@ -40,4 +42,25 @@ String.prototype['randomElement'] = function () {
   if (this.length < 1) return undefined;
   const index = Math.floor(Math.random() * this.length);
   return this[index];
+}
+
+// @ts-ignore
+String.prototype['map'] = function (callback: (char: string) => string) {
+  let mappedString = '';
+  const s = this.valueOf();
+  for (let i = 0; i < this.length; i++) {
+    mappedString += callback(s[i]);
+  }
+  return mappedString;
+}
+
+// @ts-ignore
+String.prototype['compactMap'] = function (callback: (char: string) => string | undefined) {
+  let mappedString = '';
+  const s = this.valueOf();
+  for (let i = 0; i < this.length; i++) {
+    const mappedChar = callback(s[i]);
+    if (typeof mappedChar === 'string') mappedString += mappedChar;
+  }
+  return mappedString;
 }
