@@ -8,7 +8,7 @@ declare global {
     readonly randomElement: () => T | undefined;
     readonly insert: (element: T, at: number) => void;
     readonly remove: (at: number) => T | undefined;
-    readonly compactMap: () => Array<any>;
+    readonly compactMap: (callback: (element: T) => any | undefined) => Array<any>;
     readonly shuffle: () => void;
     readonly shuffled: () => Array<T>;
     readonly swapAt: (indexA: number, indexB: number) => void;
@@ -55,7 +55,7 @@ Array.prototype['remove'] = function (at: number) {
 }
 
 // @ts-ignore
-Array.prototype['compactMap'] = function (callback: (element: any) => any | undefined) {
+Array.prototype['compactMap'] = function (callback: (element) => any | undefined) {
   const results: Array<any> = [];
   for (let i = 0; i < this.length; i++) {
     const result = callback(this[i]);
