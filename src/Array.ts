@@ -73,7 +73,12 @@ Array.prototype['shuffled'] = function () {
 
 // @ts-ignore
 Array.prototype['shuffle'] = function () {
-  this.sort(() => Math.random() - 0.5);
+  for(let i = this.endIndex ?? -1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    let tmp = this[i];
+    this[i] = this[j];
+    this[j] = tmp;
+  }
 }
 
 // @ts-ignore
