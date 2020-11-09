@@ -3,4 +3,5 @@ _bundles
 lib
 *.swp
 test.js
+test.ts
 
