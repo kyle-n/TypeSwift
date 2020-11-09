@@ -12,6 +12,8 @@ declare global {
     readonly shuffle: () => void;
     readonly shuffled: () => Array<T>;
     readonly swapAt: (indexA: number, indexB: number) => void;
+    readonly startIndex: number | undefined;
+    readonly endIndex: number | undefined;
   }
 }
 
@@ -80,3 +82,23 @@ Array.prototype['swapAt'] = function (indexA: number, indexB: number) {
   this[indexB] = this[indexA];
   this[indexA] = temp;
 }
+
+Object.defineProperty(Array.prototype, 'startIndex', {
+  get(this: Array<any>) {
+    const indices = Object.keys(this);
+    if (indices.isEmpty || typeof indices.first !== 'string') return undefined;
+    const startIndex: number = parseInt(indices.first);
+    if (isNaN(startIndex)) return undefined;
+    else return startIndex;
+  }
+});
+
+Object.defineProperty(Array.prototype, 'endIndex', {
+  get(this: Array<any>) {
+    const indices = Object.keys(this);
+    if (indices.isEmpty || typeof indices.last !== 'string') return undefined;
+    const endIndex: number = parseInt(indices.last);
+    if (isNaN(endIndex)) return undefined;
+    else return endIndex;
+  }
+})
