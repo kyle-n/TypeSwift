@@ -1,0 +1,28 @@
+{
+  "name": "SwiftlyJS",
+  "version": "1.0.0",
+  "description": "Swift-like extensions for JavaScript and TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyle-n/SwiftlyJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kyle-n/SwiftlyJS/issues"
+  },
+  "homepage": "https://github.com/kyle-n/SwiftlyJS#readme",
+  "devDependencies": {
+    "@types/node": "^14.14.6",
+    "path": "^0.12.7",
+    "ts-loader": "^8.0.11",
+    "typescript": "^4.0.5",
+    "webpack": "^5.4.0",
+    "webpack-cli": "^4.2.0"
+  }
+}
