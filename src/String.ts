@@ -7,8 +7,9 @@ declare global {
     readonly first: string | undefined;
     readonly last: string | undefined;
     readonly randomElement: () => string | undefined;
-    readonly map: (callback: (char: string) => string) => string;
-    readonly compactMap: (callback: (char: string) => string | undefined) => string;
+    readonly map: (callback: (char: string, index?: number, parent?: string) => string) => string;
+    readonly compactMap: (callback: (char: string, index?: number, parent?: string) => string | undefined) => string;
+    readonly forEach: (callback: (char: string, index?: number, parent?: string) => void) => void;
   }
 }
 
@@ -45,7 +46,7 @@ String.prototype['randomElement'] = function () {
 }
 
 // @ts-ignore
-String.prototype['map'] = function (callback: (char: string) => string) {
+String.prototype['map'] = function (callback: (char: string, index?: number, parent?: string) => string) {
   let mappedString = '';
   const s = this.valueOf();
   for (let i = 0; i < this.length; i++) {
@@ -55,7 +56,7 @@ String.prototype['map'] = function (callback: (char: string) => string) {
 }
 
 // @ts-ignore
-String.prototype['compactMap'] = function (callback: (char: string) => string | undefined) {
+String.prototype['compactMap'] = function (callback: (char: string, index?: number, parent?: string) => string | undefined) {
   let mappedString = '';
   const s = this.valueOf();
   for (let i = 0; i < this.length; i++) {
@@ -63,4 +64,12 @@ String.prototype['compactMap'] = function (callback: (char: string) => string | 
     if (typeof mappedChar === 'string') mappedString += mappedChar;
   }
   return mappedString;
+}
+
+// @ts-ignore
+String.prototype['forEach'] = function (callback: (char: string, index?: number, parent?: string) => void) {
+  const s: string = this.valueOf();
+  for (let i = 0; i < this.length; i++) {
+    callback(s[i]);
+  }
 }
