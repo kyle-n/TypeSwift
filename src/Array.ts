@@ -101,4 +101,4 @@ Object.defineProperty(Array.prototype, 'endIndex', {
     if (isNaN(endIndex)) return undefined;
     else return endIndex;
   }
-})
+});
