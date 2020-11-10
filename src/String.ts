@@ -10,6 +10,7 @@ declare global {
     readonly map: (callback: (char: string, index?: number, parent?: string) => string) => string;
     readonly compactMap: (callback: (char: string, index?: number, parent?: string) => string | undefined) => string;
     readonly forEach: (callback: (char: string, index?: number, parent?: string) => void) => void;
+    readonly reduce: <R>(callback: (result: R, char: string, index?: number) => R, initialValue: R) => R;
     readonly sorted: () => string;
     readonly reversed: () => string;
     readonly shuffled: () => string;
@@ -82,6 +83,17 @@ Object.defineProperties(String.prototype, {
         for (let i = 0; i < this.length; i++) {
           callback(this[i], i, this.valueOf());
         }
+      };
+    }
+  },
+  reduce: {
+    get(this: String) {
+      return <R>(callback: (result: R, char: string, index?: number) => R, initialValue: R): R => {
+        let val = initialValue;
+        for (let i = 0; i < this.length; i++) {
+          val = callback(val, this[i], i);
+        }
+        return val;
       };
     }
   },
