@@ -19,24 +19,24 @@ declare global {
 
 Object.defineProperties(Array.prototype, {
   first: {
-    get(this: Array<any>) {
+    get<T>(this: Array<T>) {
       if (this.length > 0) return this[0];
       else return undefined;
     }
   },
   last: {
-    get(this: Array<any>) {
+    get<T>(this: Array<T>) {
       if (this.length > 0) return this[this.length - 1];
       else return undefined;
     }
   },
   isEmpty: {
-    get(this: Array<any>) {
+    get<T>(this: Array<T>) {
       return this.length < 1;
     }
   },
   randomElement: {
-    get(this: Array<any>) {
+    get<T>(this: Array<T>) {
       return () => {
         if (this.isEmpty) return undefined;
         const index = Math.floor(Math.random() * this.length);
@@ -45,23 +45,23 @@ Object.defineProperties(Array.prototype, {
     }
   },
   insert: {
-    get(this: Array<any>) {
+    get<T>(this: Array<T>) {
       return (element: any, at: number) => {
         this.splice(at, 0, element);
       }
     }
   },
   remove: {
-    get(this: Array<any>) {
+    get<T>(this: Array<T>) {
       return (at: number) => {
         this.splice(at, 1);
       }
     }
   },
   compactMap: {
-    get(this: Array<any>) {
-      return (callback: (element: any, index?: number, parent?: Array<any>) => any | undefined) => {
-        const results: Array<any> = [];
+    get<T>(this: Array<T>) {
+      return (callback: (element: T, index?: number, parent?: Array<T>) => any | undefined): Array<any> => {
+        const results: Array<T> = [];
         for (let i = 0; i < this.length; i++) {
           const result = callback(this[i], i, this);
           if (result !== undefined && result !== null) results.push(result);
@@ -71,7 +71,7 @@ Object.defineProperties(Array.prototype, {
     }
   },
   shuffled: {
-    get(this: Array<any>) {
+    get<T>(this: Array<T>) {
       return () => {
         const clone = this.slice();
         clone.shuffle();
@@ -80,7 +80,7 @@ Object.defineProperties(Array.prototype, {
     }
   },
   shuffle: {
-    get(this: Array<any>) {
+    get<T>(this: Array<T>) {
       return () => {
         for (let i = this.endIndex ?? -1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
@@ -92,7 +92,7 @@ Object.defineProperties(Array.prototype, {
     }
   },
   swapAt: {
-    get(this: Array<any>) {
+    get<T>(this: Array<T>) {
       return (indexA: number, indexB: number) => {
         const temp = this[indexB];
         this[indexB] = this[indexA];
@@ -101,7 +101,7 @@ Object.defineProperties(Array.prototype, {
     }
   },
   startIndex: {
-    get(this: Array<any>) {
+    get<T>(this: Array<T>) {
       const indices = Object.keys(this);
       if (indices.isEmpty || typeof indices.first !== 'string') return undefined;
       const startIndex: number = parseInt(indices.first);
@@ -110,7 +110,7 @@ Object.defineProperties(Array.prototype, {
     }
   },
   endIndex: {
-    get(this: Array<any>) {
+    get<T>(this: Array<T>) {
       const indices = Object.keys(this);
       if (indices.isEmpty || typeof indices.last !== 'string') return undefined;
       const endIndex: number = parseInt(indices.last);
