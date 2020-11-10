@@ -9,29 +9,34 @@ declare global {
   }
 }
 
-// @ts-ignore
-Number.prototype['quotientAndRemainder'] = function (dividingBy: number) {
-  const n: number = this.valueOf();
-  const divisionResult = n / dividingBy;
-  const quotient = Math.floor(divisionResult);
-  const remainder = n - (quotient * dividingBy);
-  return [quotient, remainder];
-}
-
-// @ts-ignore
-Number.prototype['isMultiple'] = function (of: number) {
-  const n: number = this.valueOf();
-  return (n % of === 0);
-}
-
-Object.defineProperty(Number, 'zero', {
-  get() {
-    return 0;
-  }
-});
-
-Object.defineProperty(Number.prototype, 'isZero', {
-  get(this: Number) {
-    return this.valueOf() === 0;
+Object.defineProperties(Number.prototype, {
+  quotientAndRemainder: {
+    get(this: Number) {
+      return (dividingBy: number) => {
+        const n: number = this.valueOf();
+        const divisionResult = n / dividingBy;
+        const quotient = Math.floor(divisionResult);
+        const remainder = n - (quotient * dividingBy);
+        return [quotient, remainder];
+      };
+    }
+  },
+  isMultiple: {
+    get(this: Number) {
+      return (of: number) => {
+        const n: number = this.valueOf();
+        return (n % of === 0);
+      };
+    }
+  },
+  zero: {
+    get(this: Number) {
+      return 0;
+    }
+  },
+  isZero: {
+    get(this: Number) {
+      return this.valueOf() === this.zero;
+    }
   }
 });
