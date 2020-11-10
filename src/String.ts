@@ -57,9 +57,8 @@ Object.defineProperties(String.prototype, {
     get(this: String) {
       return (callback: (char: string, index?: number, parent?: string) => string) => {
         let mappedString = '';
-        const s = this.valueOf();
         for (let i = 0; i < this.length; i++) {
-          mappedString += callback(s[i]);
+          mappedString += callback(this[i], i, this.valueOf());
         }
         return mappedString;
       };
@@ -69,9 +68,8 @@ Object.defineProperties(String.prototype, {
     get(this: String) {
       return (callback: (char: string, index?: number, parent?: string) => string | undefined) => {
         let mappedString = '';
-        const s = this.valueOf();
         for (let i = 0; i < this.length; i++) {
-          const mappedChar = callback(s[i]);
+          const mappedChar = callback(this[i], i, this.valueOf());
           if (typeof mappedChar === 'string') mappedString += mappedChar;
         }
         return mappedString;
@@ -81,9 +79,8 @@ Object.defineProperties(String.prototype, {
   forEach: {
     get(this: String) {
       return (callback: (char: string, index?: number, parent?: string) => void) => {
-        const s: string = this.valueOf();
         for (let i = 0; i < this.length; i++) {
-          callback(s[i]);
+          callback(this[i], i, this.valueOf());
         }
       };
     }
