@@ -17,93 +17,105 @@ declare global {
   }
 }
 
-Object.defineProperty(Array.prototype, 'first', {
-  get(this: Array<any>) {
-    if (this.length > 0) return this[0];
-    else return undefined;
-  }
-});
-
-Object.defineProperty(Array.prototype, 'last', {
-  get(this: Array<any>) {
-    if (this.length > 0) return this[this.length - 1];
-    else return undefined;
-  }
-});
-
-Object.defineProperty(Array.prototype, 'isEmpty', {
-  get(this: Array<any>) {
-    return this.length < 1;
-  }
-});
-
-// @ts-ignore
-Array.prototype['randomElement'] = function () {
-  if (this.isEmpty) return undefined;
-  const index = Math.floor(Math.random() * this.length);
-  return this[index];
-};
-
-// @ts-ignore
-Array.prototype['insert'] = function (element: T, at: number) {
-  this.splice(at, 0, element);
-}
-
-// @ts-ignore
-Array.prototype['remove'] = function (at: number) {
-  this.splice(at, 1);
-}
-
-// @ts-ignore
-Array.prototype['compactMap'] = function (callback: (element) => any | undefined) {
-  const results: Array<any> = [];
-  for (let i = 0; i < this.length; i++) {
-    const result = callback(this[i]);
-    if (result !== undefined && result !== null) results.push(result);
-  }
-  return results;
-}
-
-// @ts-ignore
-Array.prototype['shuffled'] = function () {
-  const clone = this.slice();
-  clone.shuffle();
-  return clone;
-}
-
-// @ts-ignore
-Array.prototype['shuffle'] = function () {
-  for(let i = this.endIndex ?? -1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    let tmp = this[i];
-    this[i] = this[j];
-    this[j] = tmp;
-  }
-}
-
-// @ts-ignore
-Array.prototype['swapAt'] = function (indexA: number, indexB: number) {
-  const temp = this[indexB];
-  this[indexB] = this[indexA];
-  this[indexA] = temp;
-}
-
-Object.defineProperty(Array.prototype, 'startIndex', {
-  get(this: Array<any>) {
-    const indices = Object.keys(this);
-    if (indices.isEmpty || typeof indices.first !== 'string') return undefined;
-    const startIndex: number = parseInt(indices.first);
-    if (isNaN(startIndex)) return undefined;
-    else return startIndex;
-  }
-});
-
-Object.defineProperty(Array.prototype, 'endIndex', {
-  get(this: Array<any>) {
-    const indices = Object.keys(this);
-    if (indices.isEmpty || typeof indices.last !== 'string') return undefined;
-    const endIndex: number = parseInt(indices.last);
-    if (isNaN(endIndex)) return undefined;
-    else return endIndex;
+Object.defineProperties(Array.prototype, {
+  first: {
+    get(this: Array<any>) {
+      if (this.length > 0) return this[0];
+      else return undefined;
+    }
+  },
+  last: {
+    get(this: Array<any>) {
+      if (this.length > 0) return this[this.length - 1];
+      else return undefined;
+    }
+  },
+  isEmpty: {
+    get(this: Array<any>) {
+      return this.length < 1;
+    }
+  },
+  randomElement: {
+    get(this: Array<any>) {
+      return () => {
+        if (this.isEmpty) return undefined;
+        const index = Math.floor(Math.random() * this.length);
+        return this[index];
+      };
+    }
+  },
+  insert: {
+    get(this: Array<any>) {
+      return (element: any, at: number) => {
+        this.splice(at, 0, element);
+      }
+    }
+  },
+  remove: {
+    get(this: Array<any>) {
+      return (at: number) => {
+        this.splice(at, 1);
+      }
+    }
+  },
+  compactMap: {
+    get(this: Array<any>) {
+      return (callback: (element: any) => any | undefined) => {
+        const results: Array<any> = [];
+        for (let i = 0; i < this.length; i++) {
+          const result = callback(this[i]);
+          if (result !== undefined && result !== null) results.push(result);
+        }
+        return results;
+      };
+    }
+  },
+  shuffled: {
+    get(this: Array<any>) {
+      return () => {
+        const clone = this.slice();
+        clone.shuffle();
+        return clone;
+      };
+    }
+  },
+  shuffle: {
+    get(this: Array<any>) {
+      return () => {
+        for (let i = this.endIndex ?? -1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          let tmp = this[i];
+          this[i] = this[j];
+          this[j] = tmp;
+        }
+      };
+    }
+  },
+  swapAt: {
+    get(this: Array<any>) {
+      return (indexA: number, indexB: number) => {
+        const temp = this[indexB];
+        this[indexB] = this[indexA];
+        this[indexA] = temp;
+      };
+    }
+  },
+  startIndex: {
+    get(this: Array<any>) {
+      const indices = Object.keys(this);
+      if (indices.isEmpty || typeof indices.first !== 'string') return undefined;
+      const startIndex: number = parseInt(indices.first);
+      if (isNaN(startIndex)) return undefined;
+      else return startIndex;
+    }
+  },
+  endIndex: {
+    get(this: Array<any>) {
+      const indices = Object.keys(this);
+      if (indices.isEmpty || typeof indices.last !== 'string') return undefined;
+      const endIndex: number = parseInt(indices.last);
+      if (isNaN(endIndex)) return undefined;
+      else return endIndex;
+    }
   }
 });
