@@ -15,6 +15,7 @@ declare global {
     readonly shuffled: () => string;
     readonly startIndex: number | undefined;
     readonly endIndex: number | undefined;
+    readonly prefix: (callback: (char: string, index?: number, parent?: string) => boolean) => string;
   }
 }
 
@@ -122,6 +123,19 @@ Object.defineProperties(String.prototype, {
       return () => {
         return this.split('').shuffled().join('')
       }
+    }
+  },
+  prefix: {
+    get(this: String) {
+      return (callback: (char: string, index?: number, parent?: string) => boolean): string => {
+        let prefix = '';
+        for (let i = 0; i < this.length; i++) {
+          const charPassesCallback = callback(this[i], i, this.valueOf());
+          if (charPassesCallback) prefix += this[i];
+          else break;
+        }
+        return prefix;
+      };
     }
   }
 });
