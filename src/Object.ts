@@ -2,7 +2,6 @@ export {};
 
 type UniquingKeysCallback = (valueOne: any, valueTwo: any) => any;
 type KeyedObject = {[key: string]: any};
-type FilterCallback = <E>(element: E, index?: number, parent?: Object) => boolean;
 type KeyValueAssertionCallback = <E>(key: string | number, value: E) => boolean;
 
 declare global {
@@ -17,7 +16,6 @@ declare global {
     readonly removeAll: () => void;
     readonly contains: (where: KeyValueAssertionCallback) => boolean;
     readonly allSatisfy: (callback: KeyValueAssertionCallback) => boolean;
-    readonly compactMap: ()
   }
 }
 
