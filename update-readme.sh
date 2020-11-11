@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 newline=$'\n'
 
 # Remove previous content
@@ -26,3 +26,5 @@ do
   # Wrap header declaration and insert into README
   insertion=$(sed -i "${next_line}i ${code_header}${formatted_content}${code_footer}" README.md)
 done
+
+echo "README updated"
