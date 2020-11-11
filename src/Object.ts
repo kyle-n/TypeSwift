@@ -34,14 +34,16 @@ Object.defineProperties(Object.prototype, {
       };
     }
   },
-  // merge: {
-  //   get(this: Object) {
-  //     return (objectToMerge: Object, uniquingKeysWith: (valueOne: any, valueTwo: any) => any): Object => {
-  //       const merged = {...this} as any;
-  //       Object.keys(objectToMerge).forEach(key => {
-  //         if (merged.hasOwnProperty(key)) merged[key] = uniquingKeysWith(merged[key], objectToMerge[key] as any);
-  //       });
-  //     };
-  //   }
-  // }
+  merge: {
+    get(this: Object) {
+      type KeyedObject = {[key: string]: any};
+      return (objectToMerge: KeyedObject, uniquingKeysWith: (valueOne: any, valueTwo: any) => any): Object => {
+        const merged = {...this} as any;
+        Object.keys(objectToMerge).forEach(key => {
+          if (merged.hasOwnProperty(key)) merged[key] = uniquingKeysWith(merged[key], objectToMerge[key] as any);
+        });
+        return merged;
+      };
+    }
+  }
 });
