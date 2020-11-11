@@ -28,8 +28,10 @@ Object.defineProperties(Object.prototype, {
   },
   randomElement: {
     get(this: Object) {
-      const index = Math.floor(Math.random() * Object.values(this).length);
-      return Object.values(this)[index];
+      return () => {
+        const index = Math.floor(Math.random() * Object.values(this).length);
+        return Object.values(this)[index];
+      };
     }
   },
   // merge: {
