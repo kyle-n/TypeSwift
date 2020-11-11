@@ -54,6 +54,27 @@ SwiftlyJS includes a number of convenience methods based on their Swift counterp
 
 ### Features
 
+```typescript
+type UniquingKeysCallback = (valueOne: any, valueTwo: any) => any;
+type KeyedObject = {[key: string]: any};
+type KeyValueAssertionCallback = <E>(key: string | number, value: E) => boolean;
+
+declare global {
+  interface Object {
+    readonly isEmpty: boolean;
+    readonly count: number;
+    readonly first: any;
+    readonly randomElement: () => any;
+    readonly merge: (objectToMerge: KeyedObject, uniquingKeysWith: UniquingKeysCallback) => void;
+    readonly merging: (objectToMerge: KeyedObject, uniquingKeysWith: UniquingKeysCallback) => KeyedObject;
+    readonly removeValue: (forKey: string | number) => void;
+    readonly removeAll: () => void;
+    readonly contains: (where: KeyValueAssertionCallback) => boolean;
+    readonly allSatisfy: (callback: KeyValueAssertionCallback) => boolean;
+  }
+}
+```
+
 ## Q&A
 
 **Can I still use `arr[0]`? Do I have to use `arr.first`?**
