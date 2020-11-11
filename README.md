@@ -75,6 +75,66 @@ declare global {
 }
 ```
 
+```typescript
+declare global {
+  interface Array<T> {
+    readonly first: T | undefined;
+    readonly last: T | undefined;
+    readonly isEmpty: boolean;
+    readonly randomElement: () => T | undefined;
+    readonly insert: (element: T, at: number) => void;
+    readonly remove: (at: number) => T | undefined;
+    readonly compactMap: (callback: (element: T, index?: number, parent?: Array<T>) => any | undefined) => Array<any>;
+    readonly shuffle: () => void;
+    readonly shuffled: () => Array<T>;
+    readonly swapAt: (indexA: number, indexB: number) => void;
+    readonly startIndex: number | undefined;
+    readonly endIndex: number | undefined;
+  }
+}
+```
+
+```typescript
+declare global {
+  interface String {
+    readonly isEmpty: boolean;
+    readonly inserted: (substring: string, at: number) => string;
+    readonly first: string | undefined;
+    readonly last: string | undefined;
+    readonly randomElement: () => string | undefined;
+    readonly map: (callback: (char: string, index?: number, parent?: string) => string) => string;
+    readonly compactMap: (callback: (char: string, index?: number, parent?: string) => string | undefined) => string;
+    readonly forEach: (callback: (char: string, index?: number, parent?: string) => void) => void;
+    readonly reduce: <R>(callback: (result: R, char: string, index?: number) => R, initialValue: R) => R;
+    readonly sorted: () => string;
+    readonly reversed: () => string;
+    readonly shuffled: () => string;
+    readonly startIndex: number | undefined;
+    readonly endIndex: number | undefined;
+    readonly prefix: (callback: (char: string, index?: number, parent?: string) => boolean) => string;
+  }
+}
+```
+
+```typescript
+declare global {
+  interface Number {
+    readonly quotientAndRemainder: (dividingBy: number) => [quotient: number, remainder: number];
+    readonly isMultiple: (of: number) => boolean;
+    readonly zero: number;
+    readonly isZero: boolean;
+  }
+}
+```
+
+```typescript
+declare global {
+  // static property: Boolean.random()
+  interface Boolean {
+  }
+}
+```
+
 ## Q&A
 
 **Can I still use `arr[0]`? Do I have to use `arr.first`?**
