@@ -1,12 +1,16 @@
 export {};
 
+type UniquingKeysCallback = (valueOne: any, valueTwo: any) => any;
+type KeyedObject = {[key: string]: any};
+
 declare global {
   interface Object {
     readonly isEmpty: boolean;
     readonly count: number;
     readonly first: any;
     readonly randomElement: () => any;
-    readonly merge: (objectToMerge: Object, uniquingKeysWith: (valueOne: any, valueTwo: any) => any) => Object;
+    readonly merge: (objectToMerge: KeyedObject, uniquingKeysWith: UniquingKeysCallback) => void;
+    readonly merging: (objectToMerge: KeyedObject, uniquingKeysWith: UniquingKeysCallback) => KeyedObject;
   }
 }
 
@@ -35,13 +39,20 @@ Object.defineProperties(Object.prototype, {
     }
   },
   merge: {
-    get(this: Object) {
-      type KeyedObject = {[key: string]: any};
-      return (objectToMerge: KeyedObject, uniquingKeysWith: (valueOne: any, valueTwo: any) => any): Object => {
-        const merged = {...this} as any;
+    get(this: KeyedObject) {
+      return (objectToMerge: KeyedObject, uniquingKeysWith: UniquingKeysCallback): void => {
         Object.keys(objectToMerge).forEach(key => {
-          if (merged.hasOwnProperty(key)) merged[key] = uniquingKeysWith(merged[key], objectToMerge[key] as any);
+          if (this.hasOwnProperty(key)) this[key] = uniquingKeysWith(this[key], objectToMerge[key]);
+          else this[key] = objectToMerge[key];
         });
+      };
+    }
+  },
+  merged: {
+    get(this: Object) {
+      return (objectToMerge: KeyedObject, uniquingKeysWith: UniquingKeysCallback): KeyedObject => {
+        const merged = {...this};
+        merged.merge(objectToMerge, uniquingKeysWith);
         return merged;
       };
     }
