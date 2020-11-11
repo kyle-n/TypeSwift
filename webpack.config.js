@@ -1,10 +1,7 @@
 const path = require('path');
+const cloneDeep = require('clone-deep');
 
-module.exports = {
-  entry: {
-    'swiftlyjs': './src/index.ts',
-    'swiftlyjs.min': './src/index.ts'
-  },
+const sharedConfig = {
   output: {
     path: path.resolve(__dirname, '_bundles'),
     filename: '[name].js',
@@ -12,7 +9,6 @@ module.exports = {
     library: 'SwiftlyJS',
     umdNamedDefine: false
   },
-  devtool: 'source-map',
   plugins: [],
   module: {
     rules: [
@@ -26,5 +22,23 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.js']
   },
-  mode: 'development'
 };
+
+const config = {
+  ...cloneDeep(sharedConfig),
+  entry: {
+    'swiftlyjs': './src/index.ts'
+  },
+  mode: 'development',
+  devtool: 'source-map',
+};
+
+const minifiedConfig = {
+  ...cloneDeep(sharedConfig),
+  entry: {
+    'swiftlyjs.min': './src/index.ts'
+  },
+  mode: 'production'
+};
+
+module.exports = [config, minifiedConfig];
