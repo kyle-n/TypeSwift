@@ -2,6 +2,7 @@ export {};
 
 type UniquingKeysCallback = (valueOne: any, valueTwo: any) => any;
 type KeyedObject = {[key: string]: any};
+type FilterCallback = <E>(element: E, index?: number, parent?: Object) => boolean;
 
 declare global {
   interface Object {
@@ -11,6 +12,9 @@ declare global {
     readonly randomElement: () => any;
     readonly merge: (objectToMerge: KeyedObject, uniquingKeysWith: UniquingKeysCallback) => void;
     readonly merging: (objectToMerge: KeyedObject, uniquingKeysWith: UniquingKeysCallback) => KeyedObject;
+    readonly filter: (callback: FilterCallback) => KeyedObject;
+    readonly removeValue: (forKey: string | number) => void;
+    readonly removeAll: () => void;
   }
 }
 
@@ -54,6 +58,31 @@ Object.defineProperties(Object.prototype, {
         const merged = {...this};
         merged.merge(objectToMerge, uniquingKeysWith);
         return merged;
+      };
+    }
+  },
+  filter: {
+    get(this: KeyedObject) {
+      return (callback: FilterCallback): KeyedObject => {
+        const clone = {} as KeyedObject;
+        for (const key in this) {
+          if (callback(this[key])) clone[key] = this[key];
+        }
+        return clone;
+      };
+    }
+  },
+  removeValue: {
+    get(this: any) {
+      return (forKey: string | number): void => {
+        delete this[forKey];
+      };
+    }
+  },
+  removeAll: {
+    get(this: KeyedObject) {
+      return (): void => {
+        Object.keys(this).forEach(key => delete this[key]);
       };
     }
   }
