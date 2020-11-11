@@ -47,7 +47,7 @@ console.log(numbers.endIndex) // 2
 SwiftlyJS includes a number of convenience methods based on their Swift counterparts. Excluded methods include:
 
 - Functionality around managing memory
-- Functions that mutate primitive types, since [JS primitives are immutable](1) (e.x. `.toggle()` on booleans)
+- Functions that mutate primitive types, since [JS primitives are immutable][1] (e.x. `.toggle()` on booleans)
 - Functions with an extremely close equivalent in JavaScript (e.x. `first(where: )` is just `find()`)
 
 [1]: https://developer.mozilla.org/en-US/docs/Glossary/Primitive
@@ -147,6 +147,8 @@ work.
 If you don't think SwiftlyJS's extensions would help you, that's cool. I prefer writing
 `arr.last` instead of `arr[arr.length - 1]`, but it's all personal preference. 
 
-**I would like X Feature from Swift added.**
+**I would like X feature from Swift added.**
 
-Help with features would be greatly appreciated. Please check out existing code to see the style and open a PR.
+Help with features would be greatly appreciated. Please check out existing code to see the style and [open a PR][2].
+
+[2]: https://github.com/kyle-n/SwiftlyJS/pulls
