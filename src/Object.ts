@@ -3,6 +3,7 @@ export {};
 type UniquingKeysCallback = (valueOne: any, valueTwo: any) => any;
 type KeyedObject = {[key: string]: any};
 type FilterCallback = <E>(element: E, index?: number, parent?: Object) => boolean;
+type KeyValueAssertionCallback = <E>(key: string | number, value: E) => boolean;
 
 declare global {
   interface Object {
@@ -12,9 +13,11 @@ declare global {
     readonly randomElement: () => any;
     readonly merge: (objectToMerge: KeyedObject, uniquingKeysWith: UniquingKeysCallback) => void;
     readonly merging: (objectToMerge: KeyedObject, uniquingKeysWith: UniquingKeysCallback) => KeyedObject;
-    readonly filter: (callback: FilterCallback) => KeyedObject;
     readonly removeValue: (forKey: string | number) => void;
     readonly removeAll: () => void;
+    readonly contains: (where: KeyValueAssertionCallback) => boolean;
+    readonly allSatisfy: (callback: KeyValueAssertionCallback) => boolean;
+    readonly compactMap: ()
   }
 }
 
@@ -61,17 +64,6 @@ Object.defineProperties(Object.prototype, {
       };
     }
   },
-  filter: {
-    get(this: KeyedObject) {
-      return (callback: FilterCallback): KeyedObject => {
-        const clone = {} as KeyedObject;
-        for (const key in this) {
-          if (callback(this[key])) clone[key] = this[key];
-        }
-        return clone;
-      };
-    }
-  },
   removeValue: {
     get(this: any) {
       return (forKey: string | number): void => {
@@ -83,6 +75,26 @@ Object.defineProperties(Object.prototype, {
     get(this: KeyedObject) {
       return (): void => {
         Object.keys(this).forEach(key => delete this[key]);
+      };
+    }
+  },
+  contains: {
+    get(this: KeyedObject) {
+      return (where: KeyValueAssertionCallback): boolean => {
+        for (const key in this) {
+          if (where(key, this[key])) return true;
+        }
+        return false;
+      };
+    }
+  },
+  allSatisfy: {
+    get(this: KeyedObject) {
+      return (callback: KeyValueAssertionCallback): boolean => {
+        for (const key in this) {
+          if (!callback(key, this[key])) return false;
+        }
+        return true;
       };
     }
   }
