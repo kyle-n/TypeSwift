@@ -12,13 +12,14 @@ code_header='```typescript'
 code_footer='```'
 sed -i "${features_line_number}i ${newline}" README.md
 
-for file in 'src/Object.ts' 'src/Array.ts'
+for class in 'Boolean' 'Number' 'String' 'Array' 'Object'
 do
   # Blank lines around section
   sed -i "${features_line_number}i ${newline}" README.md
   next_line=$((features_line_number+1))
 
   # file output
+  file="src/${class}.ts"
   content=$(sed -n '/^export {}/,/^Object\.defineProperties/p;/^Object\.defineProperties/q' $file | tail -n +2 | head -n -2)
   formatted_content=$(echo -e "${content}\n" | sed ':a $!{N; ba}; s/\n/\\n/g')
 
