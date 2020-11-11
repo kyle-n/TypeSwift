@@ -1,6 +1,7 @@
 export {};
 
 declare global {
+  // static property: Boolean.random()
   interface Boolean {
   }
 }
