@@ -1,40 +1,40 @@
-# SwiftlyJS
+# TypeSwift
 
 Swift offers a number of convenience variables and functions across its core types. When I went back to TypeScript after
 a summer of Swift projects, I missed a lot of these conveniences. So I've added them to TypeScript and JavaScript.
 
 ## Installation
 
-`npm install swiftly-js`
+`npm install typeswift`
 
-`yarn add swiftly-js`
+`yarn add typeswift`
 
 ## Usage
 
-For Node and single-page applications, import SwiftlyJS at the start of your index file.
+For Node and single-page applications, import TypeSwift at the start of your index file.
 
 ```js
 // index.js
-const SwiftlyJS = require('swiftly-js');
+const TypeSwift = require('typeswift');
 
 // rest of program...
 ```
 
 ```typescript
 // index.ts
-import 'swiftly-js';
+import 'typeswift';
 
 // rest of program...
 ```
 
-SwiftlyJS also comes bundled as minified and non-minified scripts. Add one of these in HTML to use them in subsequent
+TypeSwift also comes bundled as minified and non-minified scripts. Add one of these in HTML to use them in subsequent
 `<script>` tags.
 
 ```html
 <body>
 ...
 </body>
-<script src="/path/to/SwiftlyJS/_bundles/swiftlyjs.min.js"></script>
+<script src="/path/to/TypeSwift/_bundles/typeswift.min.js"></script>
 <script>
 var numbers = ['one', 'two', 'three'];
 console.log(numbers.first) // 'one'
@@ -44,7 +44,7 @@ console.log(numbers.endIndex) // 2
 
 ## Included and Not Included
 
-SwiftlyJS includes a number of convenience methods based on their Swift counterparts. It does not include:
+TypeSwift includes a number of convenience methods based on their Swift counterparts. It does not include:
 
 - Functionality around managing memory
 - Functions that mutate primitive types, since [JS primitives are immutable][1] (e.x. you can't `.toggle()` booleans)
@@ -139,16 +139,16 @@ declare global {
 
 **Can I still use `arr[0]`? Do I have to use `arr.first`?**
 
-SwiftlyJS doesn't break any existing JS functionality, it just extends it. All existing JS methods and variables will
+TypeSwift doesn't break any existing JS functionality, it just extends it. All existing JS methods and variables will
 still work.
 
 **Why should I install a whole package just to write `arr.last`?**
 
-If you don't think SwiftlyJS's extensions would help you, that's cool. I prefer writing
+If you don't think TypeSwift's extensions would help you, that's cool. I prefer writing
 `arr.last` instead of `arr[arr.length - 1]`, but it's all personal preference. 
 
 **I would like X feature from Swift added.**
 
 Help with features would be greatly appreciated. Please check out existing code to see the style and [open a PR][2].
 
-[2]: https://github.com/kyle-n/SwiftlyJS/pulls
+[2]: https://github.com/kyle-n/TypeSwift/pulls

@@ -6,7 +6,7 @@ const sharedConfig = {
     path: path.resolve(__dirname, '_bundles'),
     filename: '[name].js',
     libraryTarget: 'umd',
-    library: 'SwiftlyJS',
+    library: 'TypeSwift',
     umdNamedDefine: false
   },
   plugins: [],
@@ -27,7 +27,7 @@ const sharedConfig = {
 const config = {
   ...cloneDeep(sharedConfig),
   entry: {
-    'swiftlyjs': './src/index.ts'
+    'typeswift': './src/index.ts'
   },
   mode: 'development',
   devtool: 'source-map',
@@ -36,7 +36,7 @@ const config = {
 const minifiedConfig = {
   ...cloneDeep(sharedConfig),
   entry: {
-    'swiftlyjs.min': './src/index.ts'
+    'typeswift.min': './src/index.ts'
   },
   mode: 'production'
 };
