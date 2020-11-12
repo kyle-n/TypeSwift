@@ -2,7 +2,7 @@ export {};
 
 declare global {
   interface Number {
-    readonly quotientAndRemainder: (dividingBy: number) => [quotient: number, remainder: number];
+    readonly quotientAndRemainder: (dividingBy: number) => [number, number];
     readonly isMultiple: (of: number) => boolean;
     readonly zero: number;
     readonly isZero: boolean;
