@@ -9,6 +9,7 @@
     "compile": "tsc && webpack",
     "clean": "rm -rf _bundles lib",
     "build": "npm run clean && npm run compile && ./update-readme.sh",
+    "prepare": "npm run compile",
     "preview-npm-files": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz"
   },
   "repository": {
