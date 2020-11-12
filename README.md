@@ -5,7 +5,7 @@ a summer of Swift projects, I missed a lot of these conveniences. So I've added 
 
 ## Installation
 
-`npm i SwiftlyJS`
+`npm install SwiftlyJS`
 
 `yarn add SwiftlyJS`
 
@@ -27,7 +27,7 @@ import 'SwiftlyJS';
 // rest of program...
 ```
 
-SwiftlyJS also comes bundled as minified and non-minified scripts. Add these in HTML to use them in subsequent
+SwiftlyJS also comes bundled as minified and non-minified scripts. Add one of these in HTML to use them in subsequent
 `<script>` tags.
 
 ```html
@@ -44,10 +44,10 @@ console.log(numbers.endIndex) // 2
 
 ## Included and Not Included
 
-SwiftlyJS includes a number of convenience methods based on their Swift counterparts. Excluded methods include:
+SwiftlyJS includes a number of convenience methods based on their Swift counterparts. It does not include:
 
 - Functionality around managing memory
-- Functions that mutate primitive types, since [JS primitives are immutable][1] (e.x. `.toggle()` on booleans)
+- Functions that mutate primitive types, since [JS primitives are immutable][1] (e.x. you can't `.toggle()` booleans)
 - Functions with an extremely close equivalent in JavaScript (e.x. `first(where: )` is just `find()`)
 
 [1]: https://developer.mozilla.org/en-US/docs/Glossary/Primitive
@@ -139,8 +139,8 @@ declare global {
 
 **Can I still use `arr[0]`? Do I have to use `arr.first`?**
 
-SwiftlyJS doesn't break any existing JS functionality, it just extends it. All existing JS methods and variables still
-work.
+SwiftlyJS doesn't break any existing JS functionality, it just extends it. All existing JS methods and variables will
+still work.
 
 **Why should I install a whole package just to write `arr.last`?**
 
