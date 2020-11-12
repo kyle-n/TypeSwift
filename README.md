@@ -5,9 +5,9 @@ a summer of Swift projects, I missed a lot of these conveniences. So I've added 
 
 ## Installation
 
-`npm install SwiftlyJS`
+`npm install swiftly-js`
 
-`yarn add SwiftlyJS`
+`yarn add swiftly-js`
 
 ## Usage
 
@@ -15,14 +15,14 @@ For Node and single-page applications, import SwiftlyJS at the start of your ind
 
 ```js
 // index.js
-const SwiftlyJS = require('SwiftlyJS');
+const SwiftlyJS = require('swiftly-js');
 
 // rest of program...
 ```
 
 ```typescript
 // index.ts
-import 'SwiftlyJS';
+import 'swiftly-js';
 
 // rest of program...
 ```

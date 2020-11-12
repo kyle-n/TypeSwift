@@ -1,5 +1,5 @@
 {
-  "name": "SwiftlyJS",
+  "name": "swiftly-js",
   "version": "1.0.0",
   "description": "Swift-like extensions for JavaScript and TypeScript",
   "main": "lib/index.js",
