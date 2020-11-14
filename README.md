@@ -42,7 +42,31 @@ console.log(numbers.endIndex) // 2
 </script>
 ```
 
-## Included and Not Included
+Once TypeSwift is loaded, you can begin using its extensions to JS's base classes: 
+
+```typescript
+const nums = ['one', 'two', 'three'];
+console.log(nums.first);          // 'one'
+console.log(nums[0]);             // 'one'
+console.log(nums.last)            // 'three'
+console.log(nums.randomElement()) // 'two'
+
+const objectsMayHaveId = [{id: 1}, {}, {id: 3}];
+const ids = objectsMayHaveId.compactMap(object => object.id);
+console.log(ids);                 // [1, 3]
+
+const objectA = {one: 1, two: 2};
+const objectB = {two: 'two', three: 'three'};
+const merged = objectA.merging(objectB, (objA, objB) => objB);
+console.log(merged);              // {one: 1, two: 'two', three: 'three'}
+
+const letters = 'abc';
+console.log(letters.reversed())   // 'cba'
+console.log(letters.shuffled())   // 'cab'
+console.log(letters.endIndex)     // 2
+```
+
+## Features
 
 TypeSwift includes a number of convenience methods based on their Swift counterparts. It does not include:
 
@@ -52,7 +76,7 @@ TypeSwift includes a number of convenience methods based on their Swift counterp
 
 [1]: https://developer.mozilla.org/en-US/docs/Glossary/Primitive
 
-### Features
+### API
 
 ```typescript
 type UniquingKeysCallback = (valueOne: any, valueTwo: any) => any;
