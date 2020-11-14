@@ -2,21 +2,21 @@
 newline=$'\n'
 
 # Remove previous content
-sed -i '/^###\sFeatures/,/^#/{/^#/!d}' README.md
+sed -i '/^###\sAPI/,/^#/{/^#/!d}' README.md
 
-# Grab line number of features section
-features_line_number=$(grep -n '### Features' README.md | cut -d: -f 1)
-features_line_number=$((features_line_number+1))
+# Grab line number of api section
+api_line_number=$(grep -n '### API' README.md | cut -d: -f 1)
+api_line_number=$((api_line_number+1))
 
 code_header='```typescript'
 code_footer='```'
-sed -i "${features_line_number}i ${newline}" README.md
+sed -i "${api_line_number}i ${newline}" README.md
 
 for class in 'Boolean' 'Number' 'String' 'Array' 'Object'
 do
   # Blank lines around section
-  sed -i "${features_line_number}i ${newline}" README.md
-  next_line=$((features_line_number+1))
+  sed -i "${api_line_number}i ${newline}" README.md
+  next_line=$((api_line_number+1))
 
   # file output
   file="src/${class}.ts"
