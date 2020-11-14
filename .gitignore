@@ -4,4 +4,4 @@ lib
 *.swp
 test.js
 test.ts
-
+.idea
