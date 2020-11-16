@@ -53,7 +53,7 @@ Object.defineProperties(Object.prototype, {
       };
     }
   },
-  merged: {
+  merging: {
     get(this: Object) {
       return (objectToMerge: KeyedObject, uniquingKeysWith: UniquingKeysCallback): KeyedObject => {
         const merged = {...this};
