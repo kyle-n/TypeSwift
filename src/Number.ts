@@ -2,15 +2,14 @@ export {};
 
 declare global {
   interface Number {
-    readonly quotientAndRemainder: (dividingBy: number) => [number, number];
-    readonly isMultiple: (of: number) => boolean;
-    readonly zero: number;
+    readonly quotientAndRemainderOf: (dividingBy: number) => [number, number];
+    readonly isMultipleOf: (number: number) => boolean;
     readonly isZero: boolean;
   }
 }
 
 Object.defineProperties(Number.prototype, {
-  quotientAndRemainder: {
+  quotientAndRemainderOf: {
     get(this: Number) {
       return (dividingBy: number) => {
         const n: number = this.valueOf();
@@ -21,7 +20,7 @@ Object.defineProperties(Number.prototype, {
       };
     }
   },
-  isMultiple: {
+  isMultipleOf: {
     get(this: Number) {
       return (of: number) => {
         const n: number = this.valueOf();
@@ -29,14 +28,9 @@ Object.defineProperties(Number.prototype, {
       };
     }
   },
-  zero: {
-    get(this: Number) {
-      return 0;
-    }
-  },
   isZero: {
     get(this: Number) {
-      return this.valueOf() === this.zero;
+      return this.valueOf() === 0;
     }
   }
 });
