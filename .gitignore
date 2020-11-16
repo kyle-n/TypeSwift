@@ -5,3 +5,4 @@ lib
 test.js
 test.ts
 .idea
+tmp
