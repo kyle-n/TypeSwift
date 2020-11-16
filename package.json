@@ -12,7 +12,7 @@
     "prepare": "npm run clean && npm run compile",
     "preview-npm-files": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz",
     "test": "tsc -p tsconfig.test.json && jest && rm -rf tmp",
-    "set-version": "npm run test && ./update-readme.sh && npm version $npm_config_ver"
+    "set-version": "./set-version.sh $npm_config_var"
   },
   "repository": {
     "type": "git",
