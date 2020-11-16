@@ -143,18 +143,9 @@ declare global {
 ```typescript
 declare global {
   interface Number {
-    readonly quotientAndRemainder: (dividingBy: number) => [number, number];
-    readonly isMultiple: (of: number) => boolean;
-    readonly zero: number;
+    readonly quotientAndRemainderOf: (dividingBy: number) => [number, number];
+    readonly isMultipleOf: (number: number) => boolean;
     readonly isZero: boolean;
-  }
-}
-```
-
-```typescript
-declare global {
-  // static property: Boolean.random()
-  interface Boolean {
   }
 }
 ```
