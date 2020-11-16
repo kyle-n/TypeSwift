@@ -12,7 +12,7 @@ code_header='```typescript'
 code_footer='```'
 sed -i "${api_line_number}i ${newline}" README.md
 
-for class in 'Boolean' 'Number' 'String' 'Array' 'Object'
+for class in 'Number' 'String' 'Array' 'Object'
 do
   # Blank lines around section
   sed -i "${api_line_number}i ${newline}" README.md
