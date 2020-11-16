@@ -167,3 +167,4 @@ If you don't think TypeSwift's extensions would help you, that's cool. I prefer 
 Help with features would be greatly appreciated. Please check out existing code to see the style and [open a PR][2].
 
 [2]: https://github.com/kyle-n/TypeSwift/pulls
+
