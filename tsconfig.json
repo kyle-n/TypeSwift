@@ -9,7 +9,6 @@
     "outDir": "./lib",
     "rootDir": "./src",
     "strict": true,
-    "noImplicitAny": true,
     "noUnusedLocals": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": false,
