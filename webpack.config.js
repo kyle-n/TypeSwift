@@ -1,5 +1,4 @@
 const path = require('path');
-const cloneDeep = require('clone-deep');
 
 const sharedConfig = {
   output: {
@@ -13,32 +12,32 @@ const sharedConfig = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
-        loader: 'ts-loader',
-        exclude: '/node-modules/'
+        test: /\.js$/,
+        enforce: 'pre',
+        use: ['source-map-loader']
       }
     ]
   },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.js']
   },
 };
 
-const config = {
-  ...cloneDeep(sharedConfig),
+const devConfig = {
+  ...sharedConfig,
   entry: {
-    'typeswift': './src/index.ts'
+    'typeswift': './lib/index.js'
   },
   mode: 'development',
   devtool: 'source-map',
 };
 
 const minifiedConfig = {
-  ...cloneDeep(sharedConfig),
+  ...sharedConfig,
   entry: {
-    'typeswift.min': './src/index.ts'
+    'typeswift.min': './lib/index.js'
   },
   mode: 'production'
 };
 
-module.exports = [config, minifiedConfig];
+module.exports = [devConfig, minifiedConfig];
