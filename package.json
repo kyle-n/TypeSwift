@@ -30,7 +30,6 @@
   },
   "homepage": "https://github.com/kyle-n/TypeSwift#readme",
   "devDependencies": {
-    "@types/clone-deep": "^4.0.1",
     "@types/jest": "^26.0.15",
     "@types/node": "^14.14.6",
     "jest": "^26.6.3",
