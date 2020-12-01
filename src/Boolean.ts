@@ -1,6 +1,7 @@
 export {};
 
 declare global {
+  // static properties (e.x. Boolean.random())
   interface BooleanConstructor {
     readonly random: () => boolean;
   }
