@@ -6,7 +6,20 @@ declare global {
     readonly isMultipleOf: (number: number) => boolean;
     readonly isZero: boolean;
   }
+
+  // static properties (e.x. Number.zero)
+  interface NumberConstructor {
+    readonly zero: 0;
+  }
 }
+
+Object.defineProperties(Number, {
+  zero: {
+    get(this: Number) {
+      return 0;
+    }
+  }
+});
 
 Object.defineProperties(Number.prototype, {
   quotientAndRemainderOf: {
