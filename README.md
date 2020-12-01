@@ -147,6 +147,20 @@ declare global {
     readonly isMultipleOf: (number: number) => boolean;
     readonly isZero: boolean;
   }
+
+  // static properties (e.x. Number.zero)
+  interface NumberConstructor {
+    readonly zero: 0;
+  }
+}
+```
+
+```typescript
+declare global {
+  // static properties (e.x. Boolean.random())
+  interface BooleanConstructor {
+    readonly random: () => boolean;
+  }
 }
 ```
 
