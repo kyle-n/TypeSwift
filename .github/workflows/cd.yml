@@ -2,8 +2,8 @@ name: CD
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - master
 
 jobs:
   deploy:
