@@ -9,10 +9,9 @@
     "compile": "tsc && webpack",
     "clean": "shx rm -rf _bundles lib",
     "build": "npm run clean && npm run compile",
-    "prepare": "npm run clean && npm run compile",
+    "prepare": "npm run build",
     "preview-npm-files": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz",
-    "test": "jest -c tests/jest.config.js",
-    "set-version": "./set-version.sh $npm_config_var"
+    "test": "jest -c tests/jest.config.js"
   },
   "repository": {
     "type": "git",
