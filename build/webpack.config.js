@@ -2,7 +2,7 @@ const path = require('path');
 
 const sharedConfig = {
   output: {
-    path: path.resolve(__dirname, '_bundles'),
+    path: path.resolve(__dirname, '..', '_bundles'),
     filename: '[name].js',
     libraryTarget: 'umd',
     library: 'TypeSwift',

@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 newline=$'\n'
 
+# Run self in project root, no matter where script is triggered from
+SCRIPTPATH="$(cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P)"
+cd "$SCRIPTPATH"
+cd ..
+
 # Remove previous content
 sed -i '/^###\sAPI/,/^#/{/^#/!d}' README.md
 

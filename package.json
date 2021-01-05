@@ -6,7 +6,7 @@
   "types": "lib/index.d.ts",
   "type": "commonjs",
   "scripts": {
-    "compile": "tsc && webpack",
+    "compile": "tsc -p build/tsconfig.json && webpack -c build/webpack.config.js",
     "clean": "shx rm -rf _bundles lib",
     "build": "npm run clean && npm run compile",
     "prepare": "npm run build",
