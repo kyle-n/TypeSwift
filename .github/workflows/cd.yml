@@ -1,4 +1,4 @@
-name: Publish
+name: CD
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - 'v*'
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
