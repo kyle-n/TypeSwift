@@ -6,8 +6,8 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "outDir": "./lib",
-    "rootDir": "./src",
+    "outDir": "../lib",
+    "rootDir": "../src",
     "strict": true,
     "noUnusedLocals": true,
     "noFallthroughCasesInSwitch": true,
@@ -16,7 +16,10 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
   },
+  "include": [
+    "../src"
+  ],
   "exclude": [
-    "tests"
+    "../tests"
   ]
 }
