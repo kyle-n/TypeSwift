@@ -1,4 +1,4 @@
-import './index';
+import '../src';
 
 const getExample = () => [1, 2, undefined, 4];
 

@@ -1,4 +1,4 @@
-import './index';
+import '../src';
 
 test('Number.prototype.quotientAndRemainder()', () => {
   const n = 42;
