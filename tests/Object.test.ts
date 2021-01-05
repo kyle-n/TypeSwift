@@ -1,4 +1,4 @@
-import './index';
+import '../src';
 
 const getEmpty = () => ({});
 const getObject = () => ({one: 1, two: 2});
