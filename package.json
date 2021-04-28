@@ -6,10 +6,9 @@
   "types": "lib/index.d.ts",
   "type": "commonjs",
   "scripts": {
-    "compile": "tsc -p build/tsconfig.json && webpack -c build/webpack.config.js",
+    "compile": "node build/esbuild.js",
     "clean": "shx rm -rf _bundles lib",
     "build": "npm run clean && npm run compile",
-    "esbuild": "npm run clean && node build/esbuild.js",
     "prepare": "npm run build",
     "preview-npm-files": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz",
     "test": "jest -c tests/jest.config.js"

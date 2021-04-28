@@ -6,7 +6,8 @@ build({
   sourcemap: true,
   bundle: true,
   target: 'es2015',
-  outdir: 'lib'
+  outdir: 'lib',
+  tsconfig: 'build/tsconfig.json'
 }).then(() => {
   return fs.mkdir('_bundles');
 }).then(() => {
