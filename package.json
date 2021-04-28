@@ -9,7 +9,7 @@
     "compile": "tsc -p build/tsconfig.json && webpack -c build/webpack.config.js",
     "clean": "shx rm -rf _bundles lib",
     "build": "npm run clean && npm run compile",
-    "esbuild": "node build/esbuild.js",
+    "esbuild": "npm run clean && node build/esbuild.js",
     "prepare": "npm run build",
     "preview-npm-files": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz",
     "test": "jest -c tests/jest.config.js"
