@@ -79,89 +79,18 @@ TypeSwift includes a number of convenience methods based on their Swift counterp
 ### API
 
 ```typescript
-type UniquingKeysCallback = (valueOne: any, valueTwo: any) => any;
-type KeyedObject = {[key: string]: any};
-type KeyValueAssertionCallback = <E>(key: string | number, value: E) => boolean;
-
-declare global {
-  interface Object {
-    readonly isEmpty: boolean;
-    readonly count: number;
-    readonly first: any;
-    readonly randomElement: () => any;
-    readonly merge: (objectToMerge: KeyedObject, uniquingKeysWith: UniquingKeysCallback) => void;
-    readonly merging: (objectToMerge: KeyedObject, uniquingKeysWith: UniquingKeysCallback) => KeyedObject;
-    readonly removeValue: (forKey: string | number) => void;
-    readonly removeAll: () => void;
-    readonly contains: (where: KeyValueAssertionCallback) => boolean;
-    readonly allSatisfy: (callback: KeyValueAssertionCallback) => boolean;
-  }
-}
 ```
 
 ```typescript
-declare global {
-  interface Array<T> {
-    readonly first: T | undefined;
-    readonly last: T | undefined;
-    readonly isEmpty: boolean;
-    readonly randomElement: () => T | undefined;
-    readonly insert: (element: T, at: number) => void;
-    readonly remove: (at: number) => T | undefined;
-    readonly compactMap: (callback: (element: T, index?: number, parent?: Array<T>) => any | undefined) => Array<any>;
-    readonly shuffle: () => void;
-    readonly shuffled: () => Array<T>;
-    readonly swapAt: (indexA: number, indexB: number) => void;
-    readonly startIndex: number | undefined;
-    readonly endIndex: number | undefined;
-  }
-}
 ```
 
 ```typescript
-declare global {
-  interface String {
-    readonly isEmpty: boolean;
-    readonly inserted: (substring: string, at: number) => string;
-    readonly first: string | undefined;
-    readonly last: string | undefined;
-    readonly randomElement: () => string | undefined;
-    readonly map: (callback: (char: string, index?: number, parent?: string) => string) => string;
-    readonly compactMap: (callback: (char: string, index?: number, parent?: string) => string | undefined) => string;
-    readonly forEach: (callback: (char: string, index?: number, parent?: string) => void) => void;
-    readonly reduce: <R>(callback: (result: R, char: string, index?: number) => R, initialValue: R) => R;
-    readonly sorted: () => string;
-    readonly reversed: () => string;
-    readonly shuffled: () => string;
-    readonly startIndex: number | undefined;
-    readonly endIndex: number | undefined;
-    readonly prefix: (callback: (char: string, index?: number, parent?: string) => boolean) => string;
-  }
-}
 ```
 
 ```typescript
-declare global {
-  interface Number {
-    readonly quotientAndRemainderOf: (dividingBy: number) => [number, number];
-    readonly isMultipleOf: (number: number) => boolean;
-    readonly isZero: boolean;
-  }
-
-  // static properties (e.x. Number.zero)
-  interface NumberConstructor {
-    readonly zero: 0;
-  }
-}
 ```
 
 ```typescript
-declare global {
-  // static properties (e.x. Boolean.random())
-  interface BooleanConstructor {
-    readonly random: () => boolean;
-  }
-}
 ```
 
 ## Q&A
