@@ -181,3 +181,10 @@ If you don't think TypeSwift's extensions would help you, that's cool. I prefer 
 Help with features would be greatly appreciated. Please check out existing code to see the style and [open a PR][2].
 
 [2]: https://github.com/kyle-n/TypeSwift/pulls
+
+## Building
+
+- Clone the repository
+- `cd TypeSwift && npm install`
+- Install GNU `sed` ([macOS instructions](https://gist.github.com/andre3k1/e3a1a7133fded5de5a9ee99c87c6fa0d#gistcomment-3082272))
+- When saving a new version, run `build/set-version.sh x.x.x`
