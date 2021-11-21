@@ -6,7 +6,7 @@
   "types": "lib/index.d.ts",
   "type": "commonjs",
   "scripts": {
-    "compile": "node build/esbuild.js",
+    "compile": "tsc -p build/tsconfig.json",
     "clean": "shx rm -rf _bundles lib",
     "build": "npm run clean && npm run compile",
     "prepare": "npm run build",
