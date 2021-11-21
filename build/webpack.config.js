@@ -37,6 +37,6 @@ const prodConfig = {
     'typeswift.min': './src/index.ts'
   },
   mode: 'production'
-}
+};
 
 module.exports = [devConfig, prodConfig]
