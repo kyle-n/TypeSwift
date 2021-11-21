@@ -1,7 +1,6 @@
 const path = require('path');
 
-module.exports = {
-  entry: './src/index.ts',
+const sharedConfig = {
   module: {
     rules: [
       {
@@ -17,9 +16,27 @@ module.exports = {
   resolve: {
     extensions: ['.ts'],
   },
-  mode: 'development',
   output: {
-    filename: 'typeswift.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, '..', '_bundles'),
   },
 };
+
+const devConfig = {
+  ...sharedConfig,
+  entry: {
+    'typeswift': './src/index.ts'
+  },
+  devtool: 'source-map',
+  mode: 'development'
+};
+
+const prodConfig = {
+  ...sharedConfig,
+  entry: {
+    'typeswift.min': './src/index.ts'
+  },
+  mode: 'production'
+}
+
+module.exports = [devConfig, prodConfig]
