@@ -14,7 +14,7 @@ const sharedConfig = {
     ],
   },
   resolve: {
-    extensions: ['.ts'],
+    extensions: ['.js'],
   },
   output: {
     filename: '[name].js',
@@ -25,7 +25,7 @@ const sharedConfig = {
 const devConfig = {
   ...sharedConfig,
   entry: {
-    'typeswift': './src/index.ts'
+    'typeswift': './lib/index.js'
   },
   devtool: 'source-map',
   mode: 'development'
@@ -34,7 +34,7 @@ const devConfig = {
 const prodConfig = {
   ...sharedConfig,
   entry: {
-    'typeswift.min': './src/index.ts'
+    'typeswift.min': './lib/index.js'
   },
   mode: 'production'
 };
