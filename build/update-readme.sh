@@ -25,7 +25,7 @@ do
 
   # file output
   file="src/${class}.ts"
-  content=$(gsed -n '/^export {}/,/^Object\.defineProperties/p;/^Object\.defineProperties/q' $file | tail -n +2 | head -n -2)
+  content=$(gsed -n '/^export {}/,/^Object\.defineProperties/p;/^Object\.defineProperties/q' $file | gtail -n +2 | ghead -n -2)
   formatted_content=$(echo -e "${content}\n" | gsed ':a $!{N; ba}; s/\n/\\n/g')
 
   # Wrap header declaration and insert into README
