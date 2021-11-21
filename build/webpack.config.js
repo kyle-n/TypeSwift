@@ -1,18 +1,6 @@
 const path = require('path');
 
 const sharedConfig = {
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        loader: 'ts-loader',
-        exclude: /node_modules/,
-        options: {
-          configFile: 'build/tsconfig.bundle.json'
-        }
-      },
-    ],
-  },
   resolve: {
     extensions: ['.js'],
   },
